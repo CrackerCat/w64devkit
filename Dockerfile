@@ -10,7 +10,7 @@ ARG GCC_VERSION=11.1.0
 ARG GDB_VERSION=10.2
 ARG GMP_VERSION=6.2.0
 ARG MAKE_VERSION=4.2
-ARG MINGW_VERSION=8.0.2
+ARG MINGW_VERSION=9.0.0
 ARG MPC_VERSION=1.2.1
 ARG MPFR_VERSION=4.1.0
 ARG NASM_VERSION=2.15.05
@@ -267,6 +267,8 @@ RUN x86_64-w64-mingw32-gcc -DEXE=gcc.exe -DCMD="cc -std=c99" \
 # Build some extra development tools
 
 WORKDIR /gdb
+COPY src/gdb-bcrypt.patch $PREFIX/src/
+RUN patch -d/gdb-$GDB_VERSION -p1 <$PREFIX/src/gdb-bcrypt.patch
 RUN /gdb-$GDB_VERSION/configure \
         --host=x86_64-w64-mingw32 \
         CFLAGS="-Os" \

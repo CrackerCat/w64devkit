@@ -1,0 +1,11 @@
+--- a/gnulib/import/getrandom.c
++++ b/gnulib/import/getrandom.c
+@@ -26,6 +26,8 @@
+ #include <stdbool.h>
+ #include <unistd.h>
+ 
++#undef HAVE_LIB_BCRYPT  /* workaround broken auotconf check */
++
+ #if defined _WIN32 && ! defined __CYGWIN__
+ # define WIN32_LEAN_AND_MEAN
+ # include <windows.h>
