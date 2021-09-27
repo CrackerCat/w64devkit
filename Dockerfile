@@ -6,7 +6,7 @@ ARG VERSION=1.10.0 \
     BUSYBOX_VERSION=FRP-4264-gc79f13025 \
     CTAGS_VERSION=20200824 \
     GCC_VERSION=11.2.0 \
-    GDB_VERSION=10.2 \
+    GDB_VERSION=11.1 \
     GMP_VERSION=6.2.1 \
     MAKE_VERSION=4.2 \
     MINGW_VERSION=8.0.2 \
@@ -288,6 +288,7 @@ RUN /mingw-w64-v$MINGW_VERSION/mingw-w64-tools/gendef/configure \
 WORKDIR /gdb
 RUN /gdb-$GDB_VERSION/configure \
         --host=$ARCH \
+        --with-libgmp-prefix=/deps \
         CFLAGS="-Os" \
         CXXFLAGS="-Os" \
         LDFLAGS="-s" \
